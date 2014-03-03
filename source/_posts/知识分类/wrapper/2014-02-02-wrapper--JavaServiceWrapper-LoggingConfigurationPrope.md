@@ -1,0 +1,169 @@
+---
+layout: post
+title: "Java Service Wrapper - Logging Configuration Prope"
+categories: wrapper
+tags: 
+ - wrapper
+--- 
+
+# Java Service Wrapper - Logging Configuration Properties
+
+![World Map]()EnglishJapanese (Nihongo)German (Deutsch)
+
+\*\*Please  or\*\*
+
+\* [![Java Service Wrapper Logo]()](http://wrapper.tanukisoftware.com/)
+\* [![Tanuki Software Ltd Logo]()](http://www.tanukisoftware.com/)
+
+Java Service Wrapper is the easiest way to make your product more reliable.
+
+\* [![Free Trial]()](http://wrapper.tanukisoftware.com/doc/english/requestTrial.jsp)
+\* [![Buy Now]()](http://wrapper.tanukisoftware.com/doc/english/accountLicenses.jsp)
+\* [Tanuki Software](http://www.tanukisoftware.com/)
+\* [Java Service Wrapper](http://wrapper.tanukisoftware.com/)
+
+\* [Home](http://wrapper.tanukisoftware.com/doc/english/download.jsp)
+\* [Product](http://wrapper.tanukisoftware.com/doc/english/product-overview.html)
+
+\* [Overview](http://wrapper.tanukisoftware.com/doc/english/product-overview.html)
+\* [Features](http://wrapper.tanukisoftware.com/doc/english/product-features.html)
+\* [License](http://wrapper.tanukisoftware.com/doc/english/licenseOverview.html)
+\* [FAQ](http://wrapper.tanukisoftware.com/doc/english/faq.html)
+\* [Download](http://wrapper.tanukisoftware.com/doc/english/download.jsp)
+
+\* [Stable Release](http://wrapper.tanukisoftware.com/doc/english/download.jsp\#stable)
+\* [Release Notes](http://wrapper.tanukisoftware.com/doc/english/release-notes.html)
+\* [Past Releases](http://wrapper.tanukisoftware.com/doc/english/versions.jsp)
+\* [Order](http://wrapper.tanukisoftware.com/doc/english/accountLicenses.jsp\#purchase)
+
+\* [Buy now](http://wrapper.tanukisoftware.com/doc/english/accountLicenses.jsp\#purchase)
+\* [Distributors](http://www.tanukisoftware.com/en/distributors.php)
+\* [License Overview](http://wrapper.tanukisoftware.com/doc/english/licenseOverview.html)
+\* [License FAQ](http://wrapper.tanukisoftware.com/doc/english/licenseOverview.html\#examples)
+\* [Documentation](http://wrapper.tanukisoftware.com/doc/english/introduction.html)
+
+\* [Introduction](http://wrapper.tanukisoftware.com/doc/english/introduction.html)
+\* [Integration Methods](http://wrapper.tanukisoftware.com/doc/english/integrate.html)
+\* [Launching your Application](http://wrapper.tanukisoftware.com/doc/english/launch.html)
+\* [Configuration Properties](http://wrapper.tanukisoftware.com/doc/english/properties.html)
+\* [Java API](http://wrapper.tanukisoftware.com/doc/english/javadocs.html)
+\* [Localization / i18n](http://wrapper.tanukisoftware.com/doc/english/i18n.html)
+\* [Security Model](http://wrapper.tanukisoftware.com/doc/english/security-model.html)
+\* [JMX Control](http://wrapper.tanukisoftware.com/doc/english/jmx.html)
+\* [TestWrapper Application](http://wrapper.tanukisoftware.com/doc/english/example.html)
+\* [Support](http://wrapper.tanukisoftware.com/doc/english/support.jsp)
+
+\* [Debugging](http://wrapper.tanukisoftware.com/doc/english/debugging.html)
+\* [Troubleshooting](http://wrapper.tanukisoftware.com/doc/english/troubleshooting.html)
+\* [HOWTO](http://wrapper.tanukisoftware.com/doc/english/howto.html)
+\* [Questions & Answers](http://wrapper.tanukisoftware.com/doc/english/qna.html)
+\* [FAQ](http://wrapper.tanukisoftware.com/doc/english/faq.html)
+\* [Issue Tracking](http://sourceforge.net/tracker/?group_id=39428)
+\* [Maling List](http://sourceforge.net/mail/?group_id=39428)
+\* [Get Support](http://wrapper.tanukisoftware.com/doc/english/support.jsp)
+\* [Community](http://sourceforge.net/projects/wrapper/)
+
+\* [SourceForge Project](http://sourceforge.net/projects/wrapper/)
+\* [Source Repository](http://sourceforge.net/svn/?group_id=39428)
+\* [About us](http://www.tanukisoftware.com/en/)
+
+\* [Company Profile](http://www.tanukisoftware.com/en/company.php)
+\* [Distributors](http://www.tanukisoftware.com/en/distributors.php)
+\* [Customers](http://www.tanukisoftware.com/en/customers.php)
+\* [Contact us](http://www.tanukisoftware.com/en/contact.php)
+\* \#\# Properties
+
+\* [Configuration Overview](http://wrapper.tanukisoftware.com/doc/english/properties.html)
+\* [List by Category](http://wrapper.tanukisoftware.com/doc/english/properties.html\#category)
+\* [List by Name](http://wrapper.tanukisoftware.com/doc/english/properties.html\#name)
+
+\* \#\# Currently logged on:
+
+\* 1 users, 100 guests
+
+\* \#\# Customers
+
+Logging Configuration Properties []() \# Logging Configuration Properties Logging properties are used to configure how where the Java Service Wrapper logs internal output as well as JVM output which would normally show up in the console used to launch a Java application. Wrapper Logging properties do not in any way control nor replace Logging tools within the Java application.
+
+[General/Common]
+
+\* [wrapper.adviser](http://wrapper.tanukisoftware.com/doc/english/prop-adviser.html) (3.1.0)
+\* [wrapper.debug](http://wrapper.tanukisoftware.com/doc/english/prop-debug.html)
+\* [wrapper.filter.action.<n>](http://wrapper.tanukisoftware.com/doc/english/prop-filter-x-n.html\#action) (3.0.0)
+\* [wrapper.filter.allow_wildcards.<n>](http://wrapper.tanukisoftware.com/doc/english/prop-filter-x-n.html\#allow-wildcards) (3.5.5)
+\* [wrapper.filter.message.<n>](http://wrapper.tanukisoftware.com/doc/english/prop-filter-x-n.html\#message) (3.5.0)
+\* [wrapper.filter.trigger.<n>](http://wrapper.tanukisoftware.com/doc/english/prop-filter-x-n.html\#trigger) (3.0.0)
+
+[Console]
+
+\* [wrapper.console.flush](http://wrapper.tanukisoftware.com/doc/english/prop-console-flush.html) (3.2.0)
+\* [wrapper.console.format](http://wrapper.tanukisoftware.com/doc/english/prop-console-format.html)
+\* [wrapper.console.loglevel](http://wrapper.tanukisoftware.com/doc/english/prop-console-loglevel.html)
+
+\* [wrapper.console.error_to_stderr](http://wrapper.tanukisoftware.com/doc/english/prop-console-x-to-stderr.html) (3.5.3)
+\* [wrapper.console.fatal_to_stderr](http://wrapper.tanukisoftware.com/doc/english/prop-console-x-to-stderr.html) (3.5.3)
+\* [wrapper.console.warn_to_stderr](http://wrapper.tanukisoftware.com/doc/english/prop-console-x-to-stderr.html) (3.5.3)
+
+[Command]
+
+\* [wrapper.java.command.loglevel](http://wrapper.tanukisoftware.com/doc/english/prop-java-command-loglevel.html) (3.1.2)
+
+[Log File]
+
+\* [wrapper.logfile](http://wrapper.tanukisoftware.com/doc/english/prop-logfile.html)
+\* [wrapper.logfile.format](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-format.html) (2.2.5)
+\* [wrapper.logfile.inactivity.timeout](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-inactivity-timeout.html) (3.2.0)
+\* [wrapper.logfile.loglevel](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-loglevel.html) (2.2.5)
+\* [wrapper.logfile.maxfiles](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-maxfiles.html) (2.2.5)
+\* [wrapper.logfile.maxsize](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-maxsize.html) (2.2.5)
+\* [wrapper.logfile.purge.pattern](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-purge-pattern.html) (3.3.8)
+\* [wrapper.logfile.purge.sort](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-purge-sort.html) (3.3.8)
+\* [wrapper.logfile.rollmode](http://wrapper.tanukisoftware.com/doc/english/prop-logfile-rollmode.html) (3.2.0)
+\* [wrapper.logfile.umask](http://wrapper.tanukisoftware.com/doc/english/prop-umask.html\#x-umask) (3.2.0)
+\* [wrapper.log.lf_delay.threshold](http://wrapper.tanukisoftware.com/doc/english/prop-log-lf-delay-threshold.html) (3.5.10)
+\* [wrapper.log.warning.threshold](http://wrapper.tanukisoftware.com/doc/english/prop-log-warning-threshold.html) (3.5.8)
+
+[Log-Dialog]
+
+\* [wrapper.logdialog.enable](http://wrapper.tanukisoftware.com/doc/english/prop-logdialog-enable.html) (3.3.1)
+\* [wrapper.logdialog.format](http://wrapper.tanukisoftware.com/doc/english/prop-logdialog-format.html) (3.3.1)
+\* [wrapper.logdialog.lines](http://wrapper.tanukisoftware.com/doc/english/prop-logdialog-lines.html) (3.3.1)
+\* [wrapper.logdialog.loglevel](http://wrapper.tanukisoftware.com/doc/english/prop-logdialog-loglevel.html) (3.3.1)
+
+[Syslog]
+
+\* [wrapper.syslog.facility](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-facility.html) (3.2.1)
+\* [wrapper.syslog.ident](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-ident.html) (3.2.0)
+\* [wrapper.syslog.local.host](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-local-host.html) (3.5.0)
+\* [wrapper.syslog.loglevel](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-loglevel.html) (2.2.5)
+\* [wrapper.syslog.remote.host](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-remote-host.html) (3.5.0)
+\* [wrapper.syslog.remote.port](http://wrapper.tanukisoftware.com/doc/english/prop-syslog-remote-port.html) (3.5.0)
+\* [![]()](http://wrapper.tanukisoftware.com/)
+\* [Product](http://wrapper.tanukisoftware.com/doc/english/product-overview.html)
+
+\* [Overview](http://wrapper.tanukisoftware.com/doc/english/product-overview.html)
+\* [Features](http://wrapper.tanukisoftware.com/doc/english/product-features.html)
+\* [Download](http://wrapper.tanukisoftware.com/doc/english/download.jsp\#stable)
+\* [Buy Now](http://wrapper.tanukisoftware.com/doc/english/accountLicenses.jsp\#purchase)
+\* [Distribuitors](http://www.tanukisoftware.com/en/distributors.php)
+\* [Documentation](http://wrapper.tanukisoftware.com/doc/english/introduction.html)
+
+\* [Introduction](http://wrapper.tanukisoftware.com/doc/english/introduction.html)
+\* [Integration Methods](http://wrapper.tanukisoftware.com/doc/english/integrate.html)
+\* [Configuration Properties](http://wrapper.tanukisoftware.com/doc/english/properties.html)
+\* [Java API](http://wrapper.tanukisoftware.com/doc/english/javadocs.html)
+\* [Support](http://wrapper.tanukisoftware.com/doc/english/support.jsp)
+
+\* [Debugging](http://wrapper.tanukisoftware.com/doc/english/debugging.html)
+\* [Troubleshooting](http://wrapper.tanukisoftware.com/doc/english/troubleshooting.html)
+\* [Questions & Answers](http://wrapper.tanukisoftware.com/doc/english/qna.html)
+\* [FAQ](http://wrapper.tanukisoftware.com/doc/english/faq.html)
+\* [Get Support](http://wrapper.tanukisoftware.com/doc/english/support.jsp)
+\* [Community](http://sourceforge.net/projects/wrapper/)
+
+\* [![SourceForge Project]()](http://sourceforge.net/projects/wrapper/)
+
+\* [English](http://wrapper.tanukisoftware.com/doc/english/)
+\* [日本語](http://wrapper.tanukisoftware.com/doc/japanese/)
+\* [Deutsch](http://wrapper.tanukisoftware.com/doc/german/)
+Copyright (c) 2004-2011, Tanuki Software, Ltd. All Rights Reserved.

@@ -1,0 +1,12 @@
+---
+layout: post
+title: "hi,jekyll blog"
+description: "描述第一次建立博客"
+category:  pages
+tags: [blog,jekyll]
+---
+{% include JB/setup %}
+
+#第一次用jekyll写blog
+
+  先练练手，有错误的地方，希望大家包涵。

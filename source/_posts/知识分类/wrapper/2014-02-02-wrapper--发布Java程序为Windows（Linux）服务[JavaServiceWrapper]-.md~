@@ -1,0 +1,116 @@
+---
+layout: post
+title: "发布Java程序为Windows（Linux）服务[Java Service Wrapper]"
+categories: wrapper
+tags: 
+ - wrapper
+--- 
+
+# 发布Java程序为Windows（Linux）服务[Java Service Wrapper]
+
+\### [发布Java程序为Windows（Linux）服务[Java Service Wrapper]]() **
+
+
+☆**下载Windows版本**：(请使用Community版本，因Professional和Standard版本需要购买Licenses)
+      ☆假设项目放在目录project文件夹下，发布的包放在project/lib下，日志文件放在project/log下，配置文件放在project/conf下，运行的jar为myjar.jar。
+      ☆在下载包后解压，将Java Service Wrapper包中src/bin/的App.bat.in，InstallApp-NT.bat.in，UninstallApp-NT.bat.in和bin/下的wrapper.exe放在project目录下，把后缀.in去掉。【App.bat(可以直接运行程序)，InstallApp-NT.bat(安装成Windows服务)，UninstallApp-NT.bat(卸载Windows服务)】。修改App.bat，InstallApp-NT.bat，UninstallApp-NT.bat中的set _WRAPPER_CONF="%_REALPATH%conf\wrapper.conf"。
+      ☆把Java Service Wrapper包中lib目录下的Wrapper.DLL，wrapper.jar拷贝到project/lib下，在原来的运行的jar文件myjar.jar中的MANIFEST.MF增加Class-Path: 其他jar wrapper.jar wrapper.dll。
+      ☆把Java Service Wrapper包中src/conf目录下的wrapper.conf.in放到project/conf下，去掉后缀.in。然后修改为
+wrapper.java.classpath.1=dist/wrapper.jar
+wrapper.java.classpath.2=dist/myjar.jar
+wrapper.java.library.path.1=dist
+\#原来程序运行的入口
+wrapper.app.parameter.1=myapp.mainClass
+wrapper.logfile=log/wrapper.log
+wrapper.console.title=MyApp服务
+wrapper.ntservice.name=MyApp服务
+wrapper.ntservice.displayname=MyApp服务
+wrapper.ntservice.description=MyApp服务
+
+      ☆然后直接运行App.bat，如果运行成功的话，然后就可以执行InstallApp-NT.bat发布成Windows服务，然后就可以设置成开机自启动了，不怕别人启动的时候自己的程序没有执行。另外如果在project/bin当成bat的目录的话没这么麻烦。
+
+
+<!-- Linux-->
+
+使用Java Service Wrapper将java程序作为linux服务并且开机自动启动
+以java应用程序为例，打包为tianlong.jar，程序入口为tianlong.QueueTest。
+下面在linux的/opt下建立tianlong目录，复制tianlong.jar到/opt/tianlong/lib目录下。
+1、下载Java Service Wrapper(请使用Community版本，因Professional和Standard版本需要购买Licenses), 解压。 
+      [http://wrapper.tanukisoftware.org/](http://wrapper.tanukisoftware.org/)
+      复制src\bin\sh.script.in到/opt/tianlong/bin目录，重命名为QueueTest
+      复制wrapper\bin目录下的wrapper文件到/opt/tianlong/bin目录
+      复制src\conf\wrapper.conf.in到/opt/tianlong/conf目录，重命名为wrapper.conf
+      复制src\lib\lib目录下3个文件到/opt/tianlong/lib目录
+              wrapper.so
+              wrapper.jar
+              wrappertest.jar
+2、修改/opt/tianlong/bin/QueueTest文件
+      APP_NAME="QueueTest" //注意这里，这里的应用服务名称应该与第1步的/opt/tianlong/bin里面的  QueueTest名字相同
+      APP_LONG_NAME="QueueTest Application Server"
+      WRAPPER_CMD="./wrapper" //这里的路径要写正确，这里是对应了/opt/tianlong/bin/wrapper这个文件
+      WRAPPER_CONF="../conf/wrapper.conf" //这里的路径要写正确，这里是对应了/opt/tianlong/conf/wrapper.conf这个文件
+      赋予执行权限
+      chmod 775 /opt/testapp/bin/SocketServer
+      chmod 775 /opt/testapp/bin/wrapper
+3、修改/opt/tianlong/conf/wrapper.conf文件
+      wrapper.java.command=/usr/java/jdk1.6.0_07/bin/java   //这里是写java的安装路径
+      使用WrapperStartStopApp，这样可以通过命令带start/stop来启动/停止程序。
+      wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperStartStopApp
+      \#这里添加你用到的jar包文件，从1..n你自己全写上吧，不过wrapper是必须的
+      wrapper.java.classpath.1=../lib/wrapper.jar
+      wrapper.java.classpath.2=../lib/tianlong.jar     //这里表示将打包好的tianlong.jar放在/opt/tianlong/lib这个文件夹中
+      wrapper.java.classpath.3=../lib/asterisk-java-0.3.jar
+      wrapper.java.classpath.4=../lib/mysql-connector-java-5.1.6-bin.jar
+      wrapper.java.classpath.5=/usr/java/jdk1.6.0_07/lib/dt.jar
+      wrapper.java.classpath.6=/usr/java/jdk1.6.0_07/lib/tools.jar
+      wrapper.java.classpath.7=../cofig.properties   //这个是应用程序用到的配置文件。如果使用的应用程序需要用到  配置，就需要把这个文件包含进来
+      wrapper.java.library.path.1=../lib   //这里是表示wrapper使用到的jar包的路径，一般默认即可，绝对路径是：/opt/tianlong/lib
+      wrapper.java.initmemory=3
+        JVM启动时的初始内存大小,当前是3M,如果要自定义，将\#去掉，设置自己的值即可。
+      wrapper.java.maxmemory=64
+      JVM启动时的最大内存使用量,当前是64M,如果要自定义，将\#去掉，设置自己的值即可。
+      这个就是你自己可执行程序的主类(MainClass)，一般来说，就是包含public static void main的那个类
+      wrapper.app.parameter.1=tianlong.QueueTest
+      wrapper.app.parameter.2=1
+      wrapper.app.parameter.3=true
+      wrapper.app.parameter.4=tianlong.QueueTest
+      wrapper.app.parameter.5=true
+      wrapper.app.parameter.6=1
+      wrapper.app.parameter.7=stop
+4、让QueueTest开机自动运行
+      ln -s /opt/tianlong/bin/QueueTest  /etc/init.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc0.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc1.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc2.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc3.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc4.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc5.d/QueueTest
+      ln -s /opt/tianlong/bin/QueueTest /etc/rc6.d/QueueTest
+5、测试 执行命令：service QueueTest start|stop|restart|status
+      程序运行时，Java Service Wrapper在/opt/tianlong/bin/目录下产生wrapper.log日志，
+      STATUS | wrapper  | 2009/02/25 17:04:01 | --> Wrapper Started as Daemon
+      STATUS | wrapper  | 2009/02/25 17:04:01 | Java Service Wrapper Community Edition 3.3.2
+      STATUS | wrapper  | 2009/02/25 17:04:01 |   Copyright (C) 1999-2009 Tanuki Software, Ltd.  All Rights Reserved.
+      STATUS | wrapper  | 2009/02/25 17:04:01 |     http://wrapper.tanukisoftware.org
+      STATUS | wrapper  | 2009/02/25 17:04:01 |
+      STATUS | wrapper  | 2009/02/25 17:04:01 | Launching a JVM...
+      INFO   | jvm 1    | 2009/02/25 17:04:02 | WrapperManager: Initializing...
+出现上面这个就表示已经配置成功了。如果配置有错误的话，在wrapper.log里面会有提示。
+同时，如果程序配置成功的并且启动的话，在/opt/tianlong/bin里面会有一个QueueTest.pid。
+附目录结构
+/opt/tianlong/
+    cofig.properties
+/opt/tianlong/bin
+                 | QueueTest
+                 | wrapper
+                 | wrapper.log（程序运行时自动产生）
+/opt/tianlong/conf
+                | wrapper.conf
+/opt/tianlong/lib
+                | libwrapper.so
+                | wrapper.jar
+                | tianlong.jar
+                | mysql-connector-java-5.1.6-bin.jar
+                | asterisk-java-0.3.jar
+
+

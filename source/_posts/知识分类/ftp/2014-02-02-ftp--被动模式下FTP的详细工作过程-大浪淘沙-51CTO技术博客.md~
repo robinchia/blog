@@ -1,0 +1,503 @@
+---
+layout: post
+title: "被动模式下FTP的详细工作过程 - 大浪淘沙 - 51CTO技术博客"
+categories: ftp
+tags: 
+ - ftp
+--- 
+
+# 被动模式下FTP的详细工作过程 - 大浪淘沙 - 51CTO技术博客
+
+### 分享到
+
+* [一键分享]()
+* [QQ空间]()
+* [新浪微博]()
+* [百度云收藏]()
+* [人人网]()
+* [腾讯微博]()
+* [百度相册]()
+* [开心网]()
+* [腾讯朋友]()
+* [百度贴吧]()
+* [豆瓣网]()
+* [搜狐微博]()
+* [百度新首页]()
+* [QQ好友]()
+* [和讯微博]()
+* [更多...]()
+
+[百度分享]()
+
+[![]()](http://blog.51cto.com/)[51CTO首页](http://www.51cto.com/)![]()[51CTO博客](http://blog.51cto.com/)![]()[我的博客](http://home.51cto.com/?reback=http://yuanbin.blog.51cto.com/363003/108009)![]() [搜索](http://blog.51cto.com/search.php) [每日博报]()
+
+![]()社区：[学院](http://edu.51cto.com/)[论坛](http://bbs.51cto.com/)[博客](http://blog.51cto.com/)[下载](http://down.51cto.com/)[更多![]()]()
+
+[![]( "今天领无忧币了吗？")](http://home.51cto.com/index.php?s=/Home/index)[登录](http://home.51cto.com/?reback=http://yuanbin.blog.51cto.com/363003/108009)[注册](http://ucenter.51cto.com/reg_01.php?reback=http://yuanbin.blog.51cto.com/363003/108009)
+* [家园](http://home.51cto.com/)
+* [学院](http://edu.51cto.com/)
+* [博客](http://blog.51cto.com/)
+* [论坛](http://bbs.51cto.com/)
+* [下载](http://down.51cto.com/)
+* [自测](http://selftest.51cto.com/)
+* [门诊](http://doctor.51cto.com/)
+* [周刊](http://blog.51cto.com/newsletter/)
+* [读书](http://book.51cto.com/)
+* [技术圈](http://g.51cto.com/)
+
+[![]()](http://blog.51cto.com/blogcommend)
+
+[
+# 大浪淘沙
+
+](http://yuanbin.blog.51cto.com)
+
+[http://yuanbin.blog.51cto.com](http://yuanbin.blog.51cto.com)  [【复制】]() [](http://yuanbin.blog.51cto.com/rss.php?uid=363003)[【订阅】](http://yuanbin.blog.51cto.com/rss.php?uid=363003)
+
+[原创](http://yuanbin.blog.51cto.com/363003/o "察看yuanbin0710所有原创文章"):29[翻译](http://yuanbin.blog.51cto.com/363003/t "察看yuanbin0710所有翻译文章"):0[转载](http://yuanbin.blog.51cto.com/363003/c "察看yuanbin0710所有转载文章"):8
+
+[博 客]()|[图库](http://home.51cto.com/apps/photo/index.php?s=/Index/photos/uid/363003)|[写博文](http://yuanbin.blog.51cto.com/addblog.php)|[帮 助](http://51ctoblog.blog.51cto.com/all/26414/4)
+* [首页]()|
+* [Linux System](http://yuanbin.blog.51cto.com/363003/d-1)|
+* [Linux Server](http://yuanbin.blog.51cto.com/363003/d-2)|
+* [Windows System](http://yuanbin.blog.51cto.com/363003/d-3)|
+* [Windows Server](http://yuanbin.blog.51cto.com/363003/d-4)|
+* [网络技术](http://yuanbin.blog.51cto.com/363003/d-5)|
+* [生活](http://yuanbin.blog.51cto.com/363003/d-6)
+
+## **yuanbin0710** 的BLOG
+
+![]()
+
+[写留言](http://home.51cto.com/index.php?s=/space/363003#message)[邀请进圈子](http://g.51cto.com/addgroup.php?uid=)[发消息](http://home.51cto.com/index.php?s=/Notify/write/uid/363003) [加友情链接]()[进家园 加好友](http://home.51cto.com/index.php?s=/space/363003)
+2012年度IT博客大赛
+[十大杰出IT博客诞生](http://blog.51cto.com/contest2012/#top10000)
+
+[![]()](http://blog.51cto.com/contest2012/)
+
+## 博客统计信息
+
+[**51CTO推荐博客**](http://blog.51cto.com/blogcommend)
+用户名：yuanbin0710
+文章数：37
+评论数：166
+访问量：279930
+[无忧币](http://home.51cto.com/index.php?s=/Account/credit)：20
+[博客积分](http://51ctoblog.blog.51cto.com/26414/5591)：1338
+[博客等级](http://51ctoblog.blog.51cto.com/26414/5591)：4
+注册日期：2008-04-17
+## 热门专题
+
+[更多>>](http://blog.51cto.com/zt)
+
+[![]()](http://blog.51cto.com/zt/546) [RHEL6从零基础到熟练使用](http://blog.51cto.com/zt/546 "RHEL6从零基础到熟练使用") 阅读量：8542
+
+[![]()](http://blog.51cto.com/zt/549) [VMware5.5从零开始学起](http://blog.51cto.com/zt/549 "VMware5.5从零开始学起") 阅读量：3326
+[![]()](http://blog.51cto.com/zt/547) [Hyper-V 3.0功能部署](http://blog.51cto.com/zt/547 " Hyper-V 3.0功能部署") 阅读量：2014
+
+[![]()](http://blog.51cto.com/zt/550) [Windows Server入门教程](http://blog.51cto.com/zt/550 "Windows Server入门教程") 阅读量：4726
+
+## 热门文章
+
+* [DDNS配置实例（DHCP+DNS=..](http://yuanbin.blog.51cto.com/363003/110825)
+* [BIND配置文件详解（一）](http://yuanbin.blog.51cto.com/363003/108572)
+* [SWAT—Samba WEB管..](http://yuanbin.blog.51cto.com/363003/117105)
+* [BIND配置文件详解（二）](http://yuanbin.blog.51cto.com/363003/108578)
+* [两种方式建立Vsftpd虚拟用户](http://yuanbin.blog.51cto.com/363003/129071)
+* [Samba配置文件常用参数详解](http://yuanbin.blog.51cto.com/363003/115761)
+* [子网划分的两个例子](http://yuanbin.blog.51cto.com/363003/112029)
+* [CentOS5启用Telnet服务详解](http://yuanbin.blog.51cto.com/363003/129030)
+## 搜索BLOG文章
+
+## 我的技术圈([**2**](http://yuanbin.blog.51cto.com/mygroup.php))
+
+[更多>>](http://home.51cto.com/apps/group/index.php?s=/Index/index/)
+
+* [北大青鸟benet网络工程师](http://g.51cto.com/htbenet)  
+* [IT pro](http://g.51cto.com/pro)  
+## 最近访客
+
+* [![]()](http://6601738.blog.51cto.com/)
+
+[nj_ka..](http://6601738.blog.51cto.com/)
+* [![]()](http://huan108.blog.51cto.com/)
+
+[huan108](http://huan108.blog.51cto.com/)
+* [![]()](http://902339.blog.51cto.com/)
+
+[doget](http://902339.blog.51cto.com/)
+* [![]()](http://176650.blog.51cto.com/)
+
+[gaoti..](http://176650.blog.51cto.com/)
+* [![]()](http://1433850.blog.51cto.com/)
+
+[lonrn](http://1433850.blog.51cto.com/)
+* [![]()](http://3023685.blog.51cto.com/)
+
+[wei13..](http://3023685.blog.51cto.com/)
+* [![]()](http://1055631.blog.51cto.com/)
+
+[deeps..](http://1055631.blog.51cto.com/)
+* [![]()](http://championxie.blog.51cto.com/)
+
+[champ..](http://championxie.blog.51cto.com/)
+* [![]()](http://1838662.blog.51cto.com/)
+
+[flyer..](http://1838662.blog.51cto.com/)
+* [![]()](http://shitao123.blog.51cto.com/)
+
+[sht19..](http://shitao123.blog.51cto.com/)
+* [![]()](http://7122578.blog.51cto.com/)
+
+[浩临天下](http://7122578.blog.51cto.com/)
+* [![]()](http://489730.blog.51cto.com/)
+
+[登徒浪子](http://489730.blog.51cto.com/)
+
+## 最新评论
+
+* [**eologo**](http://8309257.blog.51cto.com/)：[我没成功，请远程赐教，不胜感谢，..](http://yuanbin.blog.51cto.com/363003/110825)
+* [**452165649**](http://6718737.blog.51cto.com/)：[我是在rh5.4上做的，为什么它不出现..](http://yuanbin.blog.51cto.com/363003/110825)
+* [**zhuyingkang**](http://jxcia.blog.51cto.com/)：[博主还在么？能否看到我的留言？方..](http://yuanbin.blog.51cto.com/363003/108359)
+* [匿名]51cto游客：[我最近也在研究VSFTP，在根据楼主这..](http://yuanbin.blog.51cto.com/363003/108359)
+* [**happy2501**](http://886201.blog.51cto.com/)：[您好，我按照您的做法做下来，测试..](http://yuanbin.blog.51cto.com/363003/114207)
+## 51CTO推荐博文
+
+[更多>>](http://blog.51cto.com/artcommend)
+
+* [用Windows Server 2012 R2 搭建二..](http://mingwang.blog.51cto.com/1997299/1338756 "用Windows Server 2012 R2 搭建二层证书服务结构 Part 1")
+* [TMG学习（六），发布内网多个Web站点](http://ksyiwen.blog.51cto.com/2754337/1338850 "TMG学习（六），发布内网多个Web站点")
+* [实用防火墙（Iptables）脚本分析](http://chenguang.blog.51cto.com/350944/1338882 "实用防火墙（Iptables）脚本分析")
+* [Hadoop迈入2.0时代 更适合企业应用](http://gtstorageworld.blog.51cto.com/908359/1339080 "Hadoop迈入2.0时代 更适合企业应用")
+* [服务器（AD，DHCP，DNS，File）迁..](http://itmydream.blog.51cto.com/961933/1339095 "服务器（AD，DHCP，DNS，File）迁移案例")
+* [对于复杂流程确认的运维自动化方..](http://rfyiamcool.blog.51cto.com/1030776/1339114 "对于复杂流程确认的运维自动化方案的理解与探讨")
+* [Office 365_邮件迁移之_直接转换..](http://systema.blog.51cto.com/4037770/1338873 "Office 365_邮件迁移之_直接转换迁移（CEM）")
+* [网络编程释疑之：TCP的TIME_WAIT..](http://yaocoder.blog.51cto.com/2668309/1338567 "网络编程释疑之：TCP的TIME_WAIT状态在服务器开发中的影响？")
+* [浅谈服务器被黑后的检查工作流程](http://hucwuhen.blog.51cto.com/6253667/1338638 "浅谈服务器被黑后的检查工作流程")
+* [Backup Exec 2012 备份和还原活..](http://magic3.blog.51cto.com/1146917/1337977 "Backup Exec 2012  备份和还原活动目录(非授权还原)")
+* [AD 重置密码完整脚本](http://lixiaosong.blog.51cto.com/705126/1338148 "AD 重置密码完整脚本")
+
+## 友情链接
+
+* [Bnsen](http://lovesu.blog.51cto.com/ "Bnsen")
+* [千山岛主之微软技..](http://jary3000.blog.51cto.com/ "千山岛主之微软技术空间站")
+* [seven](http://liuyu.blog.51cto.com/ "seven")
+* [键盘人生](http://llk726.blog.51cto.com/ "键盘人生")
+* [祝孔明](http://kongming.blog.51cto.com/ "祝孔明")
+* [李晨光](http://chenguang.blog.51cto.com/ "李晨光") ![三日内更新]()
+* [秋日惜枫](http://baidu.blog.51cto.com/ "秋日惜枫")
+* [yangming.com](http://ming228.blog.51cto.com/ "yangming.com")
+* [王乾De技术Blog](http://redking.blog.51cto.com/ "王乾De技术Blog")
+* [define_myself](http://idefeng.blog.51cto.com/ "define_myself")
+* [社区大管家小废物](http://xiaofw.blog.51cto.com/ "社区大管家小废物")
+* [激情因梦想而存在](http://struggle.blog.51cto.com/ "激情因梦想而存在")
+* [岳雷的微软网络课堂](http://yuelei.blog.51cto.com/ "岳雷的微软网络课堂")
+* [胡晓秋工作室](http://huxiaoqiu.blog.51cto.com/ "胡晓秋工作室")
+* [51CTO博客开发](http://51ctoblog.blog.51cto.com/ "51CTO博客开发")
+
+[![]()](http://blog.51cto.com/contest2013/index.php?mod=userlist_third)
+
+[·【征文】聊IT运维标准化与安全，奖50元京东购物卡](http://leonarding.blog.51cto.com/6045525/1335805)[·iOS企业级开发初级课程-UIView与控件(共20集 )](http://edu.51cto.com/lesson/id-58.html)[]()
+
+[博主的更多文章>>](http://yuanbin.blog.51cto.com/all/363003)
+
+![]() 被动模式下FTP的详细工作过程 2008-10-25 20:03:53
+
+标签：[FTP](http://blog.51cto.com/tag-FTP.html) [休闲](http://blog.51cto.com/tag-休闲.html) [被动模式](http://blog.51cto.com/tag-被动模式.html) [职场](http://blog.51cto.com/tag-职场.html) [工作过程](http://blog.51cto.com/tag-工作过程.html)
+原创作品，允许转载，转载时请务必以超链接形式标明文章 [原始出处]() 、作者信息和本声明。否则将追究法律责任。[http://yuanbin.blog.51cto.com/363003/108009]()
+
+**文中有不对或者有不清楚的地方，请大家告诉我，谢谢！**
+
+**** 
+**被动模式下FTP的详细工作过程**
+
+ 
+PASV FTP在工作的第一步，与PORT FTP一样，会首先使用21端口建立控制连接；但在第二步，由FTP客户端主动发起建立数据传输连接请求，服务器的数据传输端口为随机端口，因此，每次建立的数据传输连接通道，服务器所使用的端口都不相同。
+
+本示例客户端IP是192.168.120.168，服务器IP是192.168.120.240，因为客户端的MS-DOS不支持PASV模式，所以使用FlashFXP软件来连接服务器。通过抓包工具来查看用户从连接FTP服务器到退出FTP服务器经过的所有过程。
+使用FlashFXP所做的操作：1.输入FTP服务器的IP，要登入的用户名和密码。2.进入用户家目录，查看.bashrc和.bash_profile两个文件。3.退出FTP。
+
+ 
+**PASV FTP****的详细工作过程：**
+
+**1.** 因为FTP使用的是TCP协议，所以客户端FlashFXP在连接服务器192.168.120.240时，首先会经历TCP的三次握手来建立控制通道。客户端使用任意的端口N（>1024）来连接FTP服务器默认的21端口。这和PORT模式一样。
+**2.** 在TCP三次握手结束后，服务器端正式响应客户端的控制连接请求，控制通道建立。
+
+**3.** 客户端向服务器发送含有ACK的数据段来确认控制连接建立并发送用户名。
+**4.** 服务器向客户端发送含有ACK的数据段来确认用户名。
+
+**5.** 服务器向客户端询问密码。
+**6.** 客户端向服务器发送含有ACK的数据段来确认并发送密码，密码为明文。
+
+**7.** 服务器向客户端发送含有ACK的数据段来确认密码收到。
+**8.** 服务器向客户端发送登陆成功的信息。
+
+**9.** 客户端向服务器发送含有ACK的数据段来确认并发送查询系统类型的指令（见图一）。
+**10.** 服务器向客户端发送含有ACK的数据段来确认收到指令。
+
+**11.** 服务器向客户端回应系统的类型为UNIX（见图二）。
+**12.** 客户端向服务器发送列出服务器的所有扩展命令和扩展功能的指令（见图三）。
+
+**13.** 服务器响应客户端的FEAT请求（见图四）。
+**14.** 服务器响应客户端有EPSV（扩展PASV，支持非IPV4）的扩展功能（见图五）。
+
+**15.** 客户端向服务器发送含有ACK的数据段来确认收到信息。
+**16.** 服务器响应客户端自己的其他特性（见图六）。MDTM：保留下载文件的日期/时间；REST STREAM：重设文件传输方式为stream形式。
+
+**17.** 客户端确认收到服务器的信息。
+**18.** 服务器响应客户端进入到用户的家目录（见图七）。
+
+**19.** 客户端确认收到服务器的信息。
+**20.** 客户端向服务器发送文件传输使用何种模式（Binary、ASCII）的指令（见图八）。
+
+**21.** 服务器回应客户端使用Binary模式（见图九）。
+**22.** 客户端向服务器询问.bashrc文件的大小（见图十）。
+
+**23.** 服务器回应客户端.bashrc文件的大小为124字节（见图十一）。
+**24.** 客户端向服务器发出PASV的指令（用来进行数据传输）（见图十二）。
+
+**25.** 服务器回应客户端使用PASV模式，并且商量数据传输端口用232x256+151=59543（见图十三）。
+**26.** 客户端主动使用N+1端口来连接服务器的59543端口，并且向服务器发送含有SYN的数据段来开始进行数据传输连接的第1次握手（见图十四）。
+
+**27.** 服务器向客户端发送含有SYN和ACK的数据段来进行第2次握手（见图十五）。
+**28.** 客户端向服务器发送含有ACK的数据段来进行第3次握手（见图十六）。
+
+**29.** 3次握手过程完成，客户端向服务器发送查看.bashrc文件的指令（见图十七）。
+**30.** 服务器回应客户端使用Binary数据传输模式连接.bashrc文件（见图十八）。
+
+**31.** 服务器开始进行数据传输。
+**32.** 服务器确定数据传输完毕，然后向客户端发送含有FIN和ACK的数据段来请求断开本次数据连接，第1次断开（见图十九）。
+
+**33.** 客户端向服务器发送含有ACK的数据段答应服务器的断接请求，第2次断开（见图二十）。
+**34.** 服务器响应客户端文件发送完成的信息（见图二十一）。
+
+**35.** 客户端向服务器发送含有ACK的数据段来确认收到信息。
+**36.** 客户端向服务器发送含有FIN和ACK的数据段来请求断开客户端到服务器之间的数据连接，第3次断开（见图二十二）。
+
+**37.** 服务器向客户端发送含有ACK的数据段确认断开连接，第4次断开（见图二十三）
+**38.** 接下来是查看.bash_profile文件的过程。其过程和查看.bashrc文件的过程一样（在此不详述了），只是服务器和客户端的数据传输端口变了。服务器的数据传输端口是随机的；客户端的数据传输端口是N+2。
+
+**39.** 客户端在查看完.bash_profile文件并彻底完成该次数据连接的4次断开后，向服务器发送退出的指令（见图二十四）。
+**40.** 服务器响应客户端的退出请求（见图二十五）。
+
+**41.** 服务器向客户端发送含有FIN和ACK的数据段，请求断开控制连接（见图二十六）。这是第一次断开控制连接。
+**42.** 客户端向服务器发送含有ACK的数据段来应答服务器的断接请求（见图二十七）。这是第二次断开控制连接。
+
+**43.** 客户端向服务器发送含有FIN和ACK的数据段，请求断开到服务器之间的控制连接（见图二十八）。这是第三次断开控制连接。
+**44.** 服务器向客户端发送含有ACK的数据段，来确认客户端的断接请求（见图二十九）。这样本次FTP控制连接完全断开。
+
+ 
+**通过查看本次示例（被动FTP）的详细过程，我们可以得到以下几点结果：**
+
+**1.** 服务器的控制连接端口为21，数据传输端口随机（>1024）并且每次的数据传输端口都不一样。
+**2.** 客户端的控制连接端口为N（>1024），数据传输端口在第一次进行数据传输时为N+1,在第二次数据传输时为N+2，依次类推。
+
+**3.** 服务器主动告诉客户端自己的数据传输端口。
+**4.** 客户端主动用数据传输端口N+x去连接服务器的随机数据传输端口。
+
+**5.** 在一次FTP连接的过程中，只有一次控制连接，却可以有多次数据传输连接。
+**6.** 不管是控制连接还是数据传输连接，在每次从建立到完成都需要经过3次连接和4次断开的过程。（这符合TCP协议的要求）
+
+ 
+**本文档使用的图例：**
+
+[![11]()](http://img1.51cto.com/attachment/200810/25/363003_1224935974PU0j.gif) 
+图一：客户端发送查询系统类型的指令
+
+ 
+[](http://img1.51cto.com/attachment/200810/25/363003_1224935976j9JR.jpg)[![13]()](http://img1.51cto.com/attachment/200810/25/363003_1224935977k2F8.gif)
+
+图二：服务器响应客户端系统类型为UNIX
+ 
+
+[![14]()](http://img1.51cto.com/attachment/200810/25/363003_1224935978q1o9.gif)
+图三：客户端请求服务器列出它的所有扩展命令和扩展功能
+
+ 
+[![15]()](http://img1.51cto.com/attachment/200810/25/363003_1224935983sdRz.gif)
+
+图四：服务器响应客户端的FEAT请求
+ 
+
+[![16]()](http://img1.51cto.com/attachment/200810/25/363003_1224936006Aznp.gif)
+图五：服务器响应客户端有EPSV（扩展PASV，支持非IPV4）的扩展功能
+
+ 
+[![18]()](http://img1.51cto.com/attachment/200810/25/363003_12249360074yJ5.gif)
+
+图六：服务器响应客户端自己支持的其他特性
+ 
+
+[![20]()](http://img1.51cto.com/attachment/200810/25/363003_1224936015iZgn.gif)
+图七：服务器响应客户端进入到用户家目录
+
+ 
+[![22]()](http://img1.51cto.com/attachment/200810/25/363003_1224936017ZmNc.gif)
+
+图八：客户端向服务器询问文件传输的模式
+ 
+
+[![23]()](http://img1.51cto.com/attachment/200810/25/363003_1224936018IMjR.gif)
+图九：服务器响应客户端使用Binary模式
+
+ 
+[![24]()](http://img1.51cto.com/attachment/200810/25/363003_1224936020hNul.gif)
+
+图十：客户端向服务器询问.bashrc文件的大小
+ 
+
+[![25]()](http://img1.51cto.com/attachment/200810/25/363003_1224936022sj6P.gif)
+图十一：服务器回应客户端.bashrc文件的大小为124字节
+
+ 
+[![26]()](http://img1.51cto.com/attachment/200810/25/363003_12249360237iAu.gif)
+
+图十二：客户端向服务器发送PASV指令
+ 
+
+[![27]()](http://img1.51cto.com/attachment/200810/25/363003_12249361801LGh.gif)
+图十三：服务器响应客户端使用PASV模式，并且商量数据传输端口用59543
+
+ 
+[![28]()](http://img1.51cto.com/attachment/200810/25/363003_1224936181n4nW.gif)
+
+图十四：第一次数据传输连接之第一次握手
+ 
+
+[![29]()](http://img1.51cto.com/attachment/200810/25/363003_122493618223uT.gif)
+图十五：第一次数据传输连接之第二次握手
+
+ 
+[![30]()](http://img1.51cto.com/attachment/200810/25/363003_1224936183BjjV.gif)
+
+图十六：第一次数据传输连接之第三次握手
+ 
+
+[![31]()](http://img1.51cto.com/attachment/200810/25/363003_1224936185srsz.gif)
+图十七：客户端向服务器发送查看.bashrc文件的指令
+
+ 
+[![32]()](http://img1.51cto.com/attachment/200810/25/363003_1224936186ZS1w.gif)
+
+图十八：服务器响应客户端使用Binary数据传输模式来连接.bashrc文件
+ 
+
+[![34]()](http://img1.51cto.com/attachment/200810/25/363003_1224936188Q6dX.gif)
+图十九：服务器发送FIN和ACK请求断开本次数据连接（第1次断开）
+
+ 
+[![35]()](http://img1.51cto.com/attachment/200810/25/363003_1224936210T20g.gif)
+
+图二十：客户端发送ACK答应服务器的请求（第2次断开）
+ 
+
+[![36]()](http://img1.51cto.com/attachment/200810/25/363003_1224936213ulWM.gif)
+图二十一：服务器响应客户端文件发送完毕的信息
+
+ 
+[![38]()](http://img1.51cto.com/attachment/200810/25/363003_1224936217J6aY.gif)
+
+图二十二：客户端向服务器发送含有FIN和ACK的数据段请求断开数据连接（第3次断开）
+ 
+
+[![39]()](http://img1.51cto.com/attachment/200810/25/363003_1224936218Leca.gif)
+图二十三：服务器向客户端发送含有ACK的数据段确认断开连接（第4次断开）
+
+ 
+[![56]()](http://img1.51cto.com/attachment/200810/25/363003_1224936220HQq5.gif)
+
+图二十四：客户端向服务器发出退出的指令
+ 
+
+[![57]()](http://img1.51cto.com/attachment/200810/25/363003_1224936221ejql.gif)
+图二十五：服务器响应客户端的退出请求
+
+ 
+[![58]()](http://img1.51cto.com/attachment/200810/25/363003_1224936223xMjK.gif)
+
+图二十六：服务器向客户端发送FIN和ACK请求断开控制连接（第1次断开）
+ 
+
+[![59]()](http://img1.51cto.com/attachment/200810/25/363003_12249362249BCE.gif)
+图二十七：客户端向服务器发送ACK答应服务器请求（第2次断开）
+
+ 
+[![60]()](http://img1.51cto.com/attachment/200810/25/363003_1224936225gvOK.gif)
+
+图二十八：客户端向服务器发送FIN和ACK请求断开控制连接（第3次断开）
+ 
+
+[![61]()](http://img1.51cto.com/attachment/200810/25/363003_1224936226MLVx.gif)
+图二十九：服务器向客户端发送ACK答应断开控制连接（第4次断开）
+
+ 
+[![62]()](http://img1.51cto.com/attachment/200810/25/363003_1224936227MSuY.gif)
+
+图三十：本次示例全部过程
+ 
+
+本文档完整的图例，请见附件。
+
+本文出自 “[大浪淘沙](http://yuanbin.blog.51cto.com)” 博客，请务必保留此出处[http://yuanbin.blog.51cto.com/363003/108009](http://yuanbin.blog.51cto.com/363003/108009)
+![分享至]() []( "分享到新浪微博") []( "分享到QQ空间") []( "分享到腾讯微博") []( "分享到百度搜藏") []( "分享到人人网") []( "分享到QQ收藏") []( "分享到豆瓣网") []( "分享到百度空间") []( "分享到MSN") ** 更多 [0]( "累计分享0次") [![一键收藏，随时查看，分享好友！]()]( "一键收藏，随时查看，分享好友！")
+
+![]() [cccc0912]() 1人 了这篇文章
+**附件下载：**
+[![]()FTP被动模式详细工作过程（图例）]()
+
+类别：[Linux Server](http://yuanbin.blog.51cto.com/363003/d-2)┆[技术圈]()(0)┆阅读(2046)┆评论(2) ┆ [推送到技术圈]()┆[返回首页]()
+上一篇 [主动模式下FTP的详细工作过程](http://yuanbin.blog.51cto.com/363003/107672 "主动模式下FTP的详细工作过程") 下一篇 [FTP总结](http://yuanbin.blog.51cto.com/363003/108014 "FTP总结")
+[![]()](http://blog.51cto.com/contest2013/index.php?mod=userlist_top50)
+
+## 相关文章
+
+* [FTP主动模式及被动模式](http://nickzp.blog.51cto.com/12728/39642 "FTP主动模式及被动模式")
+* [主动模式下FTP的详细工作过程](http://yuanbin.blog.51cto.com/363003/107672 "主动模式下FTP的详细工作过程")
+* [FTP上传文件经常中断或超时的解决方案](http://xwnet.blog.51cto.com/233677/95182 "FTP上传文件经常中断或超时的解决方案")
+* [RedHat AS 4 下架设FTP服务器](http://heyiyi.blog.51cto.com/205455/104282 "RedHat AS 4 下架设FTP服务器")
+* [ftp命令大全](http://zhouhaipeng.blog.51cto.com/447669/91890 "ftp命令大全")
+* [『第9天』从FTP入侵到SQL](http://userli.blog.51cto.com/45840/68768 "『第9天』从FTP入侵到SQL")
+* [Ubuntu实用简单的FTP架设](http://tempcom.blog.51cto.com/475758/106600 "Ubuntu实用简单的FTP架设")
+* [Serv-U FTP之PASV和PORT模式](http://22494.blog.51cto.com/12494/19269 "Serv-U FTP之PASV和PORT模式")
+* [2003server 搭建FTP服务器 不能下载文件问题](http://recordtrip.blog.51cto.com/346611/100469 "2003server 搭建FTP服务器 不能下载文件问题")
+* [FTP组隔离用户](http://chuan.blog.51cto.com/130796/58481 "FTP组隔离用户")
+[]()
+
+## 文章评论
+
+ []()
+
+[1楼]    ![]()  [匿名]yangming1052 [回复]()
+
+2008-10-27 11:17:13
+不错 学习了。。
+[]()
+
+[2楼]    ![]()  [**小芳1213**](http://xiaofang1213.blog.51cto.com/) [回复]()
+
+2010-09-21 08:25:03
+很不错噢。
+ 
+ []()
+
+[]()
+
+## 发表评论            
+
+[周刊：IT行业盲目涨工资比房产泡沫更危险？](http://blog.51cto.com/newsletter/230/)
+昵  称： [登录](http://home.51cto.com/index.php?reback=http://yuanbin.blog.51cto.com/363003/108009)  [快速注册](http://ucenter.51cto.com/reg_01.php?reback=http://blog.51cto.com) 验证码： ![]()
+
+点击图片可刷新验证码请点击后输入验证码[博客过2级，无需填写验证码](http://51ctoblog.blog.51cto.com/26414/5591) 内  容：
+
+同时赞一个
+返回顶部
+
+Copyright By 51CTO.COM 版权所有
+[![]()](http://blog.51cto.com/)
+[![]()](http://www.cnzz.com/stat/website.php?web_id=4274540 "站长统计")
+
+附件下载[close]()
+
+请输入验证码：
+![]( "单击更换验证码！")
+确认

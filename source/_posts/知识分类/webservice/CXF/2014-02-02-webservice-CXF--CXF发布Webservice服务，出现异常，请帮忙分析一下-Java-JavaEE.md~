@@ -1,0 +1,220 @@
+---
+layout: post
+title: "CXF发布Webservice服务，出现异常，请帮忙分析一下 - Java - Java EE"
+categories: webservice
+tags: 
+ - webservice
+ - CXF
+--- 
+
+# CXF发布Webservice服务，出现异常，请帮忙分析一下 - Java - Java EE
+
+[![]()](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#)
+
+* []()
+
+###
+
+###
+
+<<>>
+[CSDN](http://www.csdn.net/)-[CSDN社区](http://community.csdn.net/)-[Java](http://forum.csdn.net/BList/Java/)-[Java EE](http://forum.csdn.net/SList/J2EE//)
+
+* [管理菜单]()
+
+* [生成帖子](http://forum.csdn.net/PointForum/BuildTopic.aspx?topicId=68615908-0c81-480b-8ec2-36c88ed83271&postDate=2008-10-12+16%3a13%3a23&return=)
+* [置顶]()
+* [推荐]()
+* [取消推荐]()
+* [锁定]()
+* [解锁]()
+* [移动]()
+* [编辑]()
+* [删除]()
+* [帖子加分]()
+* [帖子高亮]()
+* [取消高亮]()
+* [结  帖](http://forum.csdn.net/PointForum/Manage/TopicManageView.aspx?forumID=2efca177-6b51-42d9-a509-0216fbca231e&topicID=68615908-0c81-480b-8ec2-36c88ed83271&date=2008-10-12+16%3a13%3a23&v=13)
+* [发  帖](http://forum.csdn.net/PointForum/Forum/PostTopic.aspx?forumID=2efca177-6b51-42d9-a509-0216fbca231e)
+* [回  复](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#r_achor)
+# [收藏]() 不显示删除回复显示所有回复显示星级回复显示得分回复 []()CXF发布Webservice服务，出现异常，请帮忙分析一下*[问题点数:50分，结帖人:ma_liang]*
+
+ * [![]()](http://hi.csdn.net/ma_liang)
+* [ma_liang](http://hi.csdn.net/ma_liang)
+* (黑马)
+*
+* 等　级：![]()
+* 结帖率：93.33%
+* *楼主*发表于：2008-10-12 16:13:23 使用Cxf发布WebServic出现如下异常，请帮忙分析一下
+信息: Creating Service {http://service.webservice.client.api.workflow.cvicse.com/}WsClient from class com.cvicse.workflow.api.client.webservice.service.WsClient
+Exception in thread "main" java.lang.AbstractMethodError: org.apache.xerces.dom.DocumentImpl.getInputEncoding()Ljava/lang/String;
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.apache.ws.commons.schema.utils.DOMUtil.getInputEncoding(DOMUtil.java:602)
+at org.apache.ws.commons.schema.SchemaBuilder.build(SchemaBuilder.java:84)
+at org.apache.ws.commons.schema.XmlSchemaCollection.read(XmlSchemaCollection.java:424)
+at org.apache.ws.commons.schema.XmlSchemaCollection.read(XmlSchemaCollection.java:418)
+at org.apache.cxf.common.xmlschema.SchemaCollection.read(SchemaCollection.java:142)
+at org.apache.cxf.databinding.AbstractDataBinding.addSchemaDocument(AbstractDataBinding.java:93)
+at org.apache.cxf.jaxb.JAXBDataBinding.initialize(JAXBDataBinding.java:336)
+at org.apache.cxf.service.factory.ReflectionServiceFactoryBean.buildServiceFromClass(ReflectionServiceFactoryBean.java:354)
+at org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean.buildServiceFromClass(JaxWsServiceFactoryBean.java:514)
+at org.apache.cxf.service.factory.ReflectionServiceFactoryBean.initializeServiceModel(ReflectionServiceFactoryBean.java:405)
+at org.apache.cxf.service.factory.ReflectionServiceFactoryBean.create(ReflectionServiceFactoryBean.java:188)
+at org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean.create(JaxWsServiceFactoryBean.java:164)
+at org.apache.cxf.frontend.AbstractWSDLBasedEndpointFactory.createEndpoint(AbstractWSDLBasedEndpointFactory.java:100)
+at org.apache.cxf.frontend.ServerFactoryBean.create(ServerFactoryBean.java:116)
+at org.apache.cxf.jaxws.JaxWsServerFactoryBean.create(JaxWsServerFactoryBean.java:168)
+at org.apache.cxf.jaxws.EndpointImpl.getServer(EndpointImpl.java:336)
+at org.apache.cxf.jaxws.EndpointImpl.doPublish(EndpointImpl.java:251)
+at org.apache.cxf.jaxws.EndpointImpl.publish(EndpointImpl.java:201)
+at org.apache.cxf.jaxws.spi.ProviderImpl.createAndPublishEndpoint(ProviderImpl.java:84)
+at javax.xml.ws.Endpoint.publish(Endpoint.java:47)
+at com.cvicse.workflow.WorkflowWebService.<init>(WorkflowWebService.java:13)
+at com.cvicse.workflow.WorkflowWebService.main(WorkflowWebService.java:18) * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)
+回复次数：9  * [![accp206用户头像]( "accp206用户自定义头像")](http://hi.csdn.net/accp206)
+* [accp206](http://hi.csdn.net/accp206)
+* (与勋章仅一步之遥，遗憾……没太)
+*
+* 等　级：![]()
+* #1楼 得分：10回复于：2008-10-12 18:45:58[]() 你接口中的某些方法，其参数或返回值类型是否有String数组的？
+如果有的话，消除这些类型的参数，用别的方式代替。比如String数组，可换成一个用“,”号分隔的字符串传递。
+在开发WebService程序时，尽量不要使用复杂数据类型。 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![ma_liang用户头像]( "ma_liang用户自定义头像")](http://hi.csdn.net/ma_liang)
+* [ma_liang](http://hi.csdn.net/ma_liang)
+* (黑马)
+*
+* 等　级：![]()
+* #2楼 得分：0回复于：2008-10-12 21:17:36[]() 接口中的方法里没有数组类型，不过返回值和参数里有接口类型的，我已经将它增加了适配器，如果不用适配器的话发布服务的时候会报JAXB绑定的错误，但是适配了所有后发布服务，报上面的错误，让人不解 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![teamlet用户头像]( "teamlet用户自定义头像")](http://hi.csdn.net/teamlet)
+* [teamlet](http://hi.csdn.net/teamlet)
+* (teamlet)
+*
+* 等　级：![]()
+* #3楼 得分：10回复于：2008-10-13 11:23:08[]() 看看classpath路径下有没有 xercesImpl-2.8.1.jar ，如果没有加上试试。
+这是由于获取字符集的时候，你所使用的 jar 包中的org.apache.xerces.dom.DocumentImpl没有实现getInputEncoding()这个方法。 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![teamlet用户头像]( "teamlet用户自定义头像")](http://hi.csdn.net/teamlet)
+* [teamlet](http://hi.csdn.net/teamlet)
+* (teamlet)
+*
+* 等　级：![]()
+* #4楼 得分：10回复于：2008-10-13 12:55:22[]() 报错后，字符集被设置为 UTF-8 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![ma_liang用户头像]( "ma_liang用户自定义头像")](http://hi.csdn.net/ma_liang)
+* [ma_liang](http://hi.csdn.net/ma_liang)
+* (黑马)
+*
+* 等　级：![]()
+* #5楼 得分：0回复于：2008-10-14 08:38:30[]() 我把项目构件路径中的 xercesImpl-2.8.1.jar 去掉了，反而发布成功了，为什么？ * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![teamlet用户头像]( "teamlet用户自定义头像")](http://hi.csdn.net/teamlet)
+* [teamlet](http://hi.csdn.net/teamlet)
+* (teamlet)
+*
+* 等　级：![]()
+* #6楼 得分：10回复于：2008-10-14 10:56:15[]() **更正一下**
+org.apache.xerces.dom.DocumentImpl.getInputEncoding()在其父类CoreDocumentImpl中实现了。
+在DOMUtil.java中，通过如下语句调用 getInputEncoding 方法：
+  Method m = Document.class.getMethod("getInputEncoding", new Class[]{});
+Document是一个接口，声明了 getInputEncoding 方法。
+DocumentImpl继承了CoreDocumentImpl，CoreDocumentImpl实现了Document接口。
+在通过Document接口调用DocumentImpl的时候，没有找到getInputEncoding 方法，
+因此提示java.lang.AbstractMethodError
+你的cxf是哪个版本的？在你的环境下使用的是哪个版本的 xercesImpl？是否存在多个不同的xercesImpl？ * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![ma_liang用户头像]( "ma_liang用户自定义头像")](http://hi.csdn.net/ma_liang)
+* [ma_liang](http://hi.csdn.net/ma_liang)
+* (黑马)
+*
+* 等　级：![]()
+* #7楼 得分：0回复于：2008-10-15 08:32:12[]() 我的Cxf是用的2.1.2版本，xercesImpl.jar只有一个，在构建路径里去掉就可以正常发布服务，实际上它在原来的项目里伴有重要的角色，去掉之后是可以发布服务了，但是以前的功能有些就不支持了 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![ma_liang用户头像]( "ma_liang用户自定义头像")](http://hi.csdn.net/ma_liang)
+* [ma_liang](http://hi.csdn.net/ma_liang)
+* (黑马)
+*
+* 等　级：![]()
+* #8楼 得分：0回复于：2008-10-15 09:02:58[]() 我还有一个疑问是在用Cxf发布服务时，怎么会调用这个类的方法，为什么去掉之后就不去找这个方法了？ * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)  * [![teamlet用户头像]( "teamlet用户自定义头像")](http://hi.csdn.net/teamlet)
+* [teamlet](http://hi.csdn.net/teamlet)
+* (teamlet)
+*
+* 等　级：![]()
+* #9楼 得分：10回复于：2008-10-15 10:57:07[]() 1、在根据Class生成XMLSchema的时候，当涉及到如下的namespace就会调用这个方法：
+http://www.w3.org/2005/02/addressing/wsdl
+http://www.w3.org/2005/08/addressing
+http://schemas.xmlsoap.org/ws/2005/02/rm
+http://www.w3.org/2005/05/xmlmime
+每个namespache对应的xsd在classpath中：
+"http://www.w3.org/2005/02/addressing/wsdl","classpath:/schemas/wsdl/ws-addr-wsdl.xsd");
+"http://www.w3.org/2005/08/addressing", "classpath:/schemas/wsdl/ws-addr.xsd");
+"http://schemas.xmlsoap.org/ws/2005/02/rm", "classpath:/schemas/wsdl/wsrm.xsd");
+"http://www.w3.org/2005/05/xmlmime", "classpath:/schemas/wsdl/ws-addr.xsd");
+2、javax.xml.validation.SchemaFactory 是sun提供的一个抽象类，声明了一些抽象的方法；
+通过在classpath中查找同名的配置文件可以获得具体的实现。
+在xercesImpl.jar中有一个配置文件javax.xml.validation.SchemaFactory，声明使用xercesImpl中的类。
+当你去除这个jar的时候，这个配置无法读取，就不去找这个方法了！
+但是你的环境中还可以找到其他的 javax.xml.validation.SchemaFactory 文件，绑定的是其他的实现。
+如果这些实现只能解析特定的schema ，那么它不能解析的schema声明的功能就无法使用了。 * [对我有用]()[0]
+* [丢个板砖]()[0]
+* [引用]()
+* [举报]()
+* [管理]()
+* [TOP](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#top)
+
+* [管理菜单]()
+
+* [生成帖子](http://forum.csdn.net/PointForum/BuildTopic.aspx?topicId=68615908-0c81-480b-8ec2-36c88ed83271&postDate=2008-10-12+16%3a13%3a23&return=)
+* [置顶]()
+* [推荐]()
+* [取消推荐]()
+* [锁定]()
+* [解锁]()
+* [移动]()
+* [编辑]()
+* [删除]()
+* [帖子加分]()
+* [帖子高亮]()
+* [取消高亮]()
+* [结  帖](http://forum.csdn.net/PointForum/Manage/TopicManageView.aspx?forumID=2efca177-6b51-42d9-a509-0216fbca231e&topicID=68615908-0c81-480b-8ec2-36c88ed83271&date=2008-10-12+16%3a13%3a23&v=13)
+* [发  帖](http://forum.csdn.net/PointForum/Forum/PostTopic.aspx?forumID=2efca177-6b51-42d9-a509-0216fbca231e)
+* [回  复](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#r_achor)
+相关问题 [[求助大家]关于Web Service调用时出现&quot;no jbi part element&quot;的问题](http://topic.csdn.net/u/20090513/09/5a3a5401-e059-4963-9147-136b65bce728.html)    ![]()
+
+[[关闭]](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#)
+[[关闭]](http://topic.csdn.net/u/20081012/16/68615908-0c81-480b-8ec2-36c88ed83271.html#)
