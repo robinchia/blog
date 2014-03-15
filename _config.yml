@@ -3,16 +3,17 @@
 ## Source: https://github.com/tommy351/hexo/
 
 # Site
-title: It's so life
-subtitle: It's so life
-description: 爱
+title: It so life
+subtitle: love as life
+description: It so life
 author: RobinChia
 email: arcticchia at gmail.com
-language: zh-CN
+language: es
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://itsolife.com
+author_url: http://itsolife.com/about/
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -25,7 +26,7 @@ source_dir: source
 public_dir: public
 
 # Writing
-new_post_name: :new_post_name: :year-:month-:day-:title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 auto_spacing: false # Add spaces between asian characters and western characters
 titlecase: false # Transform title into titlecase
@@ -81,10 +82,11 @@ disqus_shortname:
 ## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
 
 ## Themes: https://github.com/tommy351/hexo/wiki/Themes
-theme: winterland
+theme: chenall
 exclude_generator:
 plugins:
 - hexo-generator-feed
+- hexo-generator-sitemap
 
 # Markdown
 ## https://github.com/chjj/marked
