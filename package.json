@@ -6,6 +6,6 @@
     "hexo-generator-feed": "^0.1.0",
     "hexo-generator-sitemap": "^0.1.0",
     "hexo-migrator-wordpress": "0.0.6",
-    "lodash": "^2.4.1"
+    "lodash": "^4.17.13"
   }
 }
